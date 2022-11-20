@@ -35,6 +35,7 @@ func main() {
 				fmt.Println("An error occured while reading input. Please try again", err)
 				os.Exit(1)
 			}
+			input = strings.TrimSpace(input)
 			guess, err = convertInputToGuess(input, codeLength)
 		}
 		correntSpots, incorrectSpots := core.EvaluateGuess(append(make([]uint8, 0), guess...), append(make([]uint8, 0), code...))
