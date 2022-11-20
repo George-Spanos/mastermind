@@ -53,12 +53,15 @@ func EvaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
 // Returns 1 if game is over and player won.
 //
 // Returns 2 if game is not over.
-func DetermineGameState(correntPins uint8, codeLength uint8, guessLimit uint8, guessIndex uint8) uint8 {
-	if correntPins == codeLength {
+func DetermineGameState(correntSpots uint8, codeLength uint8, guessLimit uint8, guessIndex uint8) uint8 {
+	if correntSpots == codeLength {
 		return 1
 	}
 	if guessIndex == guessLimit {
 		return 0
 	}
 	return 2
+}
+func GameIsFinished(gameStatus uint8) bool {
+	return gameStatus == 0 || gameStatus == 1
 }
