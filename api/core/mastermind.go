@@ -10,7 +10,7 @@ import (
 func CreateColors(length uint8) []uint8 {
 	s := make([]uint8, length)
 	for i := range s {
-		s[i] = uint8(i)
+		s[i] = uint8(i) + 1
 	}
 	return s
 }

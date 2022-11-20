@@ -18,7 +18,7 @@ func main() {
 	codeLength := 4
 	code := core.GenerateCode(colors, uint8(codeLength))
 	fmt.Println("Secret code is generated. It has a length of", codeLength, ". You have", guessLimit, "more guesses.")
-	fmt.Println("Type your guess and press enter. Each color should be an number from 0-7. Seperate each color/number by a coma (,).")
+	fmt.Println("Type your guess and press enter. Each color should be an number from 1-8. Seperate each color/number by a coma (,).")
 	var gameState uint8 = 2
 	for gameState == 2 {
 		input, err := bufio.NewReader(os.Stdin).ReadString('\n')
