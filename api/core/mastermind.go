@@ -1,4 +1,4 @@
-package main
+package core
 
 import (
 	"math/rand"
@@ -7,7 +7,7 @@ import (
 	"github.com/George-Spanos/mastermind-api/tools"
 )
 
-func createColors(length uint8) []uint8 {
+func CreateColors(length uint8) []uint8 {
 	s := make([]uint8, length)
 	for i := range s {
 		s[i] = uint8(i)
@@ -15,7 +15,7 @@ func createColors(length uint8) []uint8 {
 	return s
 }
 
-func generateCode(colors []uint8, codeLength uint8) []uint8 {
+func GenerateCode(colors []uint8, codeLength uint8) []uint8 {
 	code := make([]uint8, codeLength)
 	rand.Seed(time.Now().Unix())
 	for i := range code {
@@ -25,7 +25,7 @@ func generateCode(colors []uint8, codeLength uint8) []uint8 {
 	return code
 }
 
-func evaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
+func EvaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
 	var correctSpots uint8
 	var incorrectSpots uint8
 	index := 0
@@ -53,7 +53,7 @@ func evaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
 // Returns 1 if game is over and player won.
 //
 // Returns 2 if game is not over.
-func determineGameState(correntPins uint8, codeLength uint8, guessLimit uint8, guessIndex uint8) uint8 {
+func DetermineGameState(correntPins uint8, codeLength uint8, guessLimit uint8, guessIndex uint8) uint8 {
 	if correntPins == codeLength {
 		return 1
 	}
@@ -65,14 +65,14 @@ func determineGameState(correntPins uint8, codeLength uint8, guessLimit uint8, g
 
 // Int methods are present only for benchmarking purposes
 
-func createColorsInt(length int) []int {
+func CreateColorsInt(length int) []int {
 	s := make([]int, length)
 	for i := range s {
 		s[i] = int(i)
 	}
 	return s
 }
-func generateCodeInt(colors []int, codeLength int) []int {
+func GenerateCodeInt(colors []int, codeLength int) []int {
 	code := make([]int, codeLength)
 	rand.Seed(time.Now().Unix())
 	for i := range code {
@@ -81,7 +81,7 @@ func generateCodeInt(colors []int, codeLength int) []int {
 	}
 	return code
 }
-func evaluateGuessInt(guess []int, code []int) (int, int) {
+func EvaluateGuessInt(guess []int, code []int) (int, int) {
 	var correctSpots int
 	var incorrectSpots int
 	for i := range guess {

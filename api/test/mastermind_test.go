@@ -1,11 +1,15 @@
-package main
+package core_test
 
-import "testing"
+import (
+	"testing"
+
+	core "github.com/George-Spanos/mastermind-api/core"
+)
 
 func TestEvaluateGuess1(t *testing.T) {
 	code := []uint8{1, 3, 3, 4}
 	guess := []uint8{1, 4, 4, 3}
-	correctSpots, incorrectSpots := evaluateGuess(guess, code)
+	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 	if correctSpots != 1 {
 		t.Error("Expexted 1 correct spot, got", correctSpots)
 	}
@@ -19,7 +23,7 @@ func TestEvaluateGuess2(t *testing.T) {
 	expectedCorrectSpots := 4
 	expectedIncorrectSpots := 0
 
-	correctSpots, incorrectSpots := evaluateGuess(guess, code)
+	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 	if correctSpots != uint8(expectedCorrectSpots) {
 		t.Error("Expexted", expectedCorrectSpots, "correct spot, got", correctSpots)
 	}
@@ -33,7 +37,7 @@ func TestEvaluateGuess3(t *testing.T) {
 	expectedCorrectSpots := 1
 	expectedIncorrectSpots := 1
 
-	correctSpots, incorrectSpots := evaluateGuess(guess, code)
+	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 	if correctSpots != uint8(expectedCorrectSpots) {
 		t.Error("Expexted", expectedCorrectSpots, "correct spot, got", correctSpots)
 	}
@@ -47,7 +51,7 @@ func TestEvaluateGuess4(t *testing.T) {
 	expectedCorrectSpots := 0
 	expectedIncorrectSpots := 2
 
-	correctSpots, incorrectSpots := evaluateGuess(guess, code)
+	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 	if correctSpots != uint8(expectedCorrectSpots) {
 		t.Error("Expexted", expectedCorrectSpots, "correct spot, got", correctSpots)
 	}
@@ -61,7 +65,7 @@ func TestEvaluateGuess5(t *testing.T) {
 	expectedCorrectSpots := 1
 	expectedIncorrectSpots := 0
 
-	correctSpots, incorrectSpots := evaluateGuess(guess, code)
+	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 	if correctSpots != uint8(expectedCorrectSpots) {
 		t.Error("Expexted", expectedCorrectSpots, "correct spot, got", correctSpots)
 	}
@@ -75,7 +79,7 @@ func TestEvaluateGuess6(t *testing.T) {
 	expectedCorrectSpots := 4
 	expectedIncorrectSpots := 0
 
-	correctSpots, incorrectSpots := evaluateGuess(guess, code)
+	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 	if correctSpots != uint8(expectedCorrectSpots) {
 		t.Error("Expexted", expectedCorrectSpots, "correct spot, got", correctSpots)
 	}
@@ -89,7 +93,7 @@ func TestEvaluateGuess7(t *testing.T) {
 	expectedCorrectSpots := 0
 	expectedIncorrectSpots := 0
 
-	correctSpots, incorrectSpots := evaluateGuess(guess, code)
+	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 	if correctSpots != uint8(expectedCorrectSpots) {
 		t.Error("Expexted", expectedCorrectSpots, "correct spot, got", correctSpots)
 	}
@@ -103,7 +107,7 @@ func TestEvaluateGuess8(t *testing.T) {
 	expectedCorrectSpots := 0
 	expectedIncorrectSpots := 2
 
-	correctSpots, incorrectSpots := evaluateGuess(guess, code)
+	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 	if correctSpots != uint8(expectedCorrectSpots) {
 		t.Error("Expexted", expectedCorrectSpots, "correct spot, got", correctSpots)
 	}

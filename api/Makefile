@@ -1,8 +1,14 @@
+
 test:
-	go test .
+	go test ./test
+.PHONY: test
+
 bench:
-	go test -bench=. -benchmem
+	go test ./test -bench=. -benchmem
+
 run:
-	go run .
+	go run main.go
+
 build: 
 	go build -o build/
+.PHONY: build
