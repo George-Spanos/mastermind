@@ -3,7 +3,7 @@ package core_test
 import (
 	"testing"
 
-	core "github.com/George-Spanos/mastermind/core"
+	core "github.com/George-Spanos/mastermind/api/core"
 )
 
 func BenchmarkCreateColors(b *testing.B) {

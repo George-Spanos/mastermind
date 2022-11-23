@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/George-Spanos/mastermind/tools"
+	"github.com/George-Spanos/mastermind/api/tools"
 )
 
 func CreateColors(length uint8) []uint8 {
