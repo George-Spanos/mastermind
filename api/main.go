@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/George-Spanos/mastermind-api/web"
+	"github.com/George-Spanos/mastermind/web"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-module github.com/George-Spanos/mastermind-api
+module github.com/George-Spanos/mastermind
 
 go 1.19
 
