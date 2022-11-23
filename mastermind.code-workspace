@@ -4,7 +4,9 @@
       "path": "."
     }
   ],
-  "settings": {},
+  "settings": {
+    "makefile.makefilePath": "./api/Makefile"
+  },
   "extensions": {
     "recommendations": [
       "esbenp.prettier-vscode",
