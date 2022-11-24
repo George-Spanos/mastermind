@@ -1,4 +1,4 @@
-// Web api App for a Mastermind.
+// Web api App for a Mastermind, using the mastermind/core package
 package main
 
 import (

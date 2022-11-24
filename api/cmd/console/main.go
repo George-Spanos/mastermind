@@ -1,3 +1,4 @@
+// A simple Mastermind game played on console, using the mastermind/core package.
 package main
 
 import (
