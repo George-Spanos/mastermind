@@ -10,8 +10,8 @@ RUN go mod download
 
 COPY ./ ./
 
-RUN go build -o build/mastermind-api
+RUN go build ./cmd/web -o build/web
 
 EXPOSE 8080
 
-CMD [ "./build/mastermind-api" ]
+CMD [ "./build/web" ]
