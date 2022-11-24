@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/George-Spanos/mastermind/api/core"
+	"github.com/George-Spanos/mastermind/core"
 	"github.com/gin-gonic/gin"
 )
 
