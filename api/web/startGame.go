@@ -3,7 +3,7 @@ package web
 import (
 	"net/http"
 
-	"github.com/George-Spanos/mastermind/core"
+	"github.com/George-Spanos/mastermind/api/core"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )

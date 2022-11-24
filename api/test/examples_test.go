@@ -3,7 +3,7 @@ package core_test
 import (
 	"fmt"
 
-	core "github.com/George-Spanos/mastermind/core"
+	core "github.com/George-Spanos/mastermind/api/core"
 )
 
 func ExampleCreateColors() {

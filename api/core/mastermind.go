@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/George-Spanos/mastermind/tools"
+	"github.com/George-Spanos/mastermind/api/tools"
 )
 
 // Creates a list of uint8 that represent the available colors of a single game.
