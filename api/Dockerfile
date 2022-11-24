@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY ./ ./
 
-RUN go build -o build/
+RUN go build -o build/mastermind-api
 
 EXPOSE 8080
 

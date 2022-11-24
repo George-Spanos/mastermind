@@ -5,3 +5,9 @@ services:
       context: ./api
     ports:
       - 8080:8080
+  ui: 
+    container_name: ui
+    build: 
+      context: ./ui
+    ports:
+      - 4200:80
