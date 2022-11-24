@@ -1,3 +1,4 @@
+// Web api App for a Mastermind.
 package main
 
 import (
