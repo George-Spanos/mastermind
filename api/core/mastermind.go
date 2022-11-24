@@ -1,3 +1,4 @@
+// Core logic of solving the mastermind problem with go.
 package core
 
 import (
@@ -7,6 +8,7 @@ import (
 	"github.com/George-Spanos/mastermind/tools"
 )
 
+// Creates a list of uint8 that represent the available colors of a single game.
 func CreateColors(length uint8) []uint8 {
 	s := make([]uint8, length)
 	for i := range s {
@@ -15,6 +17,7 @@ func CreateColors(length uint8) []uint8 {
 	return s
 }
 
+// Given a list of colors and a length, generates the secret code
 func GenerateCode(colors []uint8, codeLength uint8) []uint8 {
 	code := make([]uint8, codeLength)
 	rand.Seed(time.Now().Unix())
@@ -25,6 +28,7 @@ func GenerateCode(colors []uint8, codeLength uint8) []uint8 {
 	return code
 }
 
+// Given a guess []uint8 and a code, it returns (correntSpots, incorrectSpots) as a pair of uints for the given guess.
 func EvaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
 	var correctSpots uint8
 	var incorrectSpots uint8
@@ -62,6 +66,8 @@ func DetermineGameState(correntSpots uint8, codeLength uint8, guessLimit uint8, 
 	}
 	return 2
 }
+
+// returns true if gameStatus == 1 or gameStatus == 0
 func GameIsFinished(gameStatus uint8) bool {
 	return gameStatus == 0 || gameStatus == 1
 }

@@ -6,17 +6,6 @@ import (
 	core "github.com/George-Spanos/mastermind/core"
 )
 
-func TestEvaluateGuess1(t *testing.T) {
-	code := []uint8{1, 3, 3, 4}
-	guess := []uint8{1, 4, 4, 3}
-	correctSpots, incorrectSpots := core.EvaluateGuess(guess, code)
-	if correctSpots != 1 {
-		t.Error("Expexted 1 correct spot, got", correctSpots)
-	}
-	if incorrectSpots != 2 {
-		t.Error("Expexted 2 incorrect spot, got", incorrectSpots)
-	}
-}
 func TestEvaluateGuess2(t *testing.T) {
 	code := []uint8{1, 2, 3, 4}
 	guess := []uint8{1, 2, 3, 4}
