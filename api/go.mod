@@ -1,5 +1,5 @@
 module github.com/George-Spanos/mastermind/api
-retract v0.0.0-20221123231234-b9758c2c9067
+
 go 1.19
 
 require (
