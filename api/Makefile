@@ -1,14 +1,22 @@
+.PHONY: test build_web build_console run_web
 
+
+clean:
+	rm -rf build/
 test:
 	go test ./...
-.PHONY: test
 
 bench:
-	go test ./test -bench=. -benchmem
+	go test ./... -bench=. -benchmem
 
-run:
-	go run main.go
+run_web:
+	go run ./cmd/web
 
-build: 
-	go build -o build/
-.PHONY: build
+run_console:
+	go run ./cmd/console
+
+build_web: clean
+	go build ./cmd/web -o build/web
+
+build_console: clean
+	go build ./cmd/console -o build/console
