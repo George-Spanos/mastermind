@@ -16,7 +16,7 @@ run_console:
 	go run ./cmd/console
 
 build_web: clean
-	go build ./cmd/web -o build/web
+	go build -o build/web ./cmd/web
 
 build_console: clean
-	go build ./cmd/console -o build/console
+	go build -o build/console ./cmd/console
