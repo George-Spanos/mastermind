@@ -21,20 +21,13 @@
         "name": "Api",
         "type": "go",
         "request": "launch",
-        "mode": "auto",
-        "program": "${fileDirname}/api"
-      },
-      {
-        "name": "Debug",
-        "type": "go",
-        "request": "launch",
         "mode": "debug",
         "program": "${fileDirname}/api",
         "showLog": true,
         "console": "integratedTerminal"
       },
       {
-        "name": "Web",
+        "name": "Web UI",
         "type": "dart",
         "request": "launch",
         "program": "ui/lib/main.dart",
@@ -42,7 +35,7 @@
         "deviceId": "chrome"
       },
       {
-        "name": "Mobile",
+        "name": "Mobile UI",
         "type": "dart",
         "request": "launch",
         "program": "ui/lib/main.dart",

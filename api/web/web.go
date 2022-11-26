@@ -1,6 +1,7 @@
 package web
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -21,6 +22,7 @@ var activeGames = map[string]*Game{}
 
 func registerRoutes() *gin.Engine {
 	router := gin.Default()
+	router.Use(cors.Default())
 	router.POST("/startGame", startGame)
 	router.POST("/evaluateGuess", evaluateGuess)
 	return router
