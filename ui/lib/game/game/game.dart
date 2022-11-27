@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mastermind_ui/repository.dart';
+import 'package:mastermind_ui/game/repository.dart';
 
-import 'models.dart';
+import '../models.dart';
 
 class Game extends StatefulWidget {
   const Game({Key? key}) : super(key: key);
