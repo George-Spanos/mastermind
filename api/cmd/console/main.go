@@ -9,9 +9,11 @@ import (
 	"strings"
 
 	core "github.com/George-Spanos/mastermind/api/core"
+	"github.com/George-Spanos/mastermind/api/db"
 )
 
 func main() {
+	db.QueryGames()
 	fmt.Println("Hello from Golang Console Mastermind!")
 	colors := core.CreateColors(8)
 	guessLimit := 12
