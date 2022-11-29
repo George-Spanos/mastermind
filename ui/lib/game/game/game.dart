@@ -27,13 +27,16 @@ class _GameState extends State<Game> {
             width: 340,
             child: Column(children: [
               const Flexible(fit: FlexFit.tight, child: CodeGuessList()),
-              ColorList(),
+              const ColorList(),
               ElevatedButton(
                   onPressed: _startPlaying,
                   child: BlocBuilder<GameBloc, GameState>(
                       builder: (context, state) => state is GamePlaying
                           ? const Text("Submit Guess")
                           : const Text("Play"))),
+              const SizedBox(
+                height: 15,
+              )
             ]),
           ),
         ],
