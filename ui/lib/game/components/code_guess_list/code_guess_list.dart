@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mastermind_ui/game/components/code_guess/code_guess.dart';
 import 'package:mastermind_ui/game/game/bloc/game_bloc.dart';
@@ -21,14 +21,25 @@ class CodeGuessList extends StatelessWidget {
               reverse: true,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return Row(children: [
-                  Text(
-                    (index + 1).toString(),
-                    style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  CodeGuess(guess: state.guesses[index])
-                ]);
+                return Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: state.guessIndex == index + 1
+                          ? const Color.fromARGB(244, 223, 223, 223)
+                          : Colors.transparent),
+                  child: Row(children: [
+                    Text(
+                      (index + 1).toString(),
+                      style: const TextStyle(
+                          fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    CodeGuess(
+                      guess: state.guesses[index],
+                      guessIndex: index,
+                    )
+                  ]),
+                );
               },
               separatorBuilder: (context, index) => const SizedBox(
                     width: 15,

@@ -14,6 +14,17 @@ class GameStarted extends GameEvent {
   List<Object?> get props => [totalGuesses];
 }
 
+class GuessChanged extends GameEvent {
+  final int color;
+  final int guessIndex;
+  final int pegIndex;
+
+  const GuessChanged(this.color, this.guessIndex, this.pegIndex);
+
+  @override
+  List<Object?> get props => [color, guessIndex, pegIndex];
+}
+
 class GuessSubmitted extends GameEvent {
   final Guess guess;
   final String codeId;

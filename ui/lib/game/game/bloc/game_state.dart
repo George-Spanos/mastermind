@@ -1,15 +1,11 @@
-import 'package:equatable/equatable.dart';
 import 'package:mastermind_ui/game/models.dart';
 
-abstract class GameState extends Equatable {
+abstract class GameState {
   const GameState();
 }
 
 /// State representing that no game is initialized.
-class GameNotPlaying extends GameState {
-  @override
-  List<Object?> get props => [];
-}
+class GameNotPlaying extends GameState {}
 
 class GamePlaying extends GameState {
   final String codeId;
@@ -21,11 +17,12 @@ class GamePlaying extends GameState {
       required this.guessIndex,
       required this.totalGuesses,
       this.guesses = const []});
-  GamePlaying addGuess(int correctSpots, int incorrectSpots) {
+  GamePlaying addFeedbackToLastGuess(int correctSpots, int incorrectSpots) {
     final newGuessIndex = guessIndex + 1;
     final newGuesses = [...guesses];
     newGuesses[guessIndex] = newGuesses[guessIndex]
         .addFeedback(GuessFeedback(correctSpots, incorrectSpots));
+
     return GamePlaying(
         codeId: codeId,
         guessIndex: newGuessIndex,
@@ -33,8 +30,15 @@ class GamePlaying extends GameState {
         guesses: newGuesses);
   }
 
-  @override
-  List<Object?> get props => [codeId, guessIndex, totalGuesses];
+  GamePlaying changeGuess(int color, int guessIndex, int pegIndex) {
+    final newGuesses = [...guesses];
+    newGuesses[guessIndex].code[pegIndex] = color;
+    return GamePlaying(
+        codeId: codeId,
+        guessIndex: this.guessIndex,
+        totalGuesses: totalGuesses,
+        guesses: newGuesses);
+  }
 }
 
 class GameFinished extends GameState {
@@ -49,7 +53,4 @@ class GameFinished extends GameState {
       message = "Sorry you lost. Correct code is $code";
     }
   }
-
-  @override
-  List<Object?> get props => [gameStatus, message];
 }

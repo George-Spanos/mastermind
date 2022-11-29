@@ -46,18 +46,15 @@ class GuessFeedback extends Equatable {
   List<Object?> get props => [blackSpots, whiteSpots];
 }
 
-class Guess extends Equatable {
+class Guess {
   final List<int> code;
   final GuessFeedback? feedback;
 
   const Guess(this.code, this.feedback);
   Guess.empty()
-      : code = List.filled(4, 0),
+      : code = List.filled(4, 0, growable: false),
         feedback = null;
   Guess addFeedback(GuessFeedback feedback) {
     return Guess(code, feedback);
   }
-
-  @override
-  List<Object?> get props => [code, feedback];
 }

@@ -18,7 +18,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
           codeId: response.gameId,
           guessIndex: 1,
           totalGuesses: event.totalGuesses,
-          guesses: List.filled(event.totalGuesses, Guess.empty())));
+          guesses: List.generate(event.totalGuesses, (i) => Guess.empty())));
     } else if (event is GuessSubmitted) {
       final response = await _api
           .evaluateGuess(EvaluateGuessDto(event.guess.code, event.codeId));
@@ -27,9 +27,14 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       } else {
         assert(state is GamePlaying);
         final playingState = state as GamePlaying;
-        emit(playingState.addGuess(
+        emit(playingState.addFeedbackToLastGuess(
             response.correctSpots, response.incorrectSpots));
       }
+    } else if (event is GuessChanged) {
+      assert(state is GamePlaying);
+      final playingState = state as GamePlaying;
+      emit(playingState.changeGuess(
+          event.color, event.guessIndex, event.pegIndex));
     }
   }
 }

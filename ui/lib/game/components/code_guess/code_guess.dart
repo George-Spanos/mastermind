@@ -7,7 +7,8 @@ import '../guess_feedback/guess_feedback.dart';
 
 class CodeGuess extends StatelessWidget {
   final Guess guess;
-  const CodeGuess({super.key, required this.guess});
+  final int guessIndex;
+  const CodeGuess({super.key, required this.guess, required this.guessIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,14 @@ class CodeGuess extends StatelessWidget {
             child: ListView.builder(
               shrinkWrap: true,
               itemBuilder: ((context, index) {
-                final guessIndex = guess.code.elementAt(index);
-                final color = pegColors[guessIndex]!;
+                final colorIndex = guess.code[index];
+                final color = pegColors[colorIndex]!;
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CodePeg(
                     color: color,
+                    guessIndex: guessIndex,
+                    pegIndex: index,
                   ),
                 );
               }),
