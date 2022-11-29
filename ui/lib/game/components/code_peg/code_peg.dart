@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CodePeg extends StatelessWidget {
   final Color color;
-  const CodePeg({super.key, this.color = Colors.transparent});
+  const CodePeg({super.key, required this.color});
   @override
   Widget build(BuildContext context) {
     return Container(

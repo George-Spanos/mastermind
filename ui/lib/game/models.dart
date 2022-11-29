@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 class EvaluateGuessDto {
   final String uuid;
   final List<int> guess;
@@ -26,4 +28,26 @@ class EvaluateGuessResponse {
       : correctSpots = 0,
         incorrectSpots = 0,
         gameStatus = GameStatus.lost;
+}
+
+class GuessFeedback extends Equatable {
+  final int blackSpots;
+  final int whiteSpots;
+
+  const GuessFeedback(this.blackSpots, this.whiteSpots);
+
+  @override
+  List<Object?> get props => [blackSpots, whiteSpots];
+}
+
+class Guess extends Equatable {
+  final List<int> code;
+  final GuessFeedback? feedback;
+
+  const Guess(this.code, this.feedback);
+  Guess.empty()
+      : code = List.filled(4, 0),
+        feedback = null;
+  @override
+  List<Object?> get props => [code, feedback];
 }
