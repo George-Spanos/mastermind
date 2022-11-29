@@ -13,7 +13,9 @@ class CodeGuessList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GameBloc, GameState>(
       builder: (context, state) {
-        if (state is GameNotPlaying) return const Text("not started playing");
+        if (state is GameNotPlaying) {
+          return const Text("Press play to start playing!");
+        }
         if (state is GamePlaying) {
           return ListView.separated(
               reverse: true,

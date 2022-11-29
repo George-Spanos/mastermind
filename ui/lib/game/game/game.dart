@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mastermind_ui/game/components/code_guess_list/code_guess_list.dart';
+import 'package:mastermind_ui/game/components/color_list/color_list.dart';
 import 'package:mastermind_ui/game/game/bloc/game_bloc.dart';
 import 'package:mastermind_ui/game/game/bloc/game_event.dart';
 import 'package:mastermind_ui/game/game/bloc/game_state.dart';
@@ -19,25 +20,33 @@ class _GameState extends State<Game> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        constraints: const BoxConstraints(
-          maxWidth: 340,
-        ),
-        child: Column(children: [
-          const Flexible(child: CodeGuessList()),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          const ColorList(),
           const SizedBox(
-            height: 15,
+            width: 15,
           ),
-          ElevatedButton(
-              onPressed: _startPlaying,
-              child: BlocBuilder<GameBloc, GameState>(
-                  builder: (context, state) => state is GamePlaying
-                      ? const Text("Submit Guess")
-                      : const Text("Play"))),
-          const SizedBox(
-            height: 15,
-          )
-        ]),
+          SizedBox(
+            width: 340,
+            child: Column(children: [
+              const Flexible(child: CodeGuessList()),
+              const SizedBox(
+                height: 15,
+              ),
+              ElevatedButton(
+                  onPressed: _startPlaying,
+                  child: BlocBuilder<GameBloc, GameState>(
+                      builder: (context, state) => state is GamePlaying
+                          ? const Text("Submit Guess")
+                          : const Text("Play"))),
+              const SizedBox(
+                height: 15,
+              )
+            ]),
+          ),
+        ],
       ),
     );
   }
