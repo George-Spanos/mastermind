@@ -13,14 +13,11 @@ class CodePeg extends StatelessWidget {
           color: color,
           border: Border.all(color: Colors.brown.shade800, width: 2.5),
           boxShadow: [
-            if (color == Colors.transparent) ...[
-              BoxShadow(
-                  color: Colors.brown.shade200,
-                  spreadRadius: 0.5,
-                  blurRadius: 1,
-                  blurStyle: BlurStyle.outer,
-                  offset: const Offset(0.2, 0.3))
-            ]
+            BoxShadow(
+              color: Colors.brown.shade300,
+              blurRadius: 3,
+              blurStyle: BlurStyle.outer,
+            )
           ]),
     );
   }
