@@ -20,12 +20,14 @@ class EvaluateGuessResponse {
   final int correctSpots;
   final int incorrectSpots;
   final GameStatus gameStatus;
-  final List<int>? secretCode;
+  final List<dynamic>? secretCode;
   EvaluateGuessResponse.success(Map<String, dynamic> json)
       : correctSpots = json['correctSpots'],
         incorrectSpots = json['incorrectSpots'],
-        gameStatus = json['gameStatus'],
-        secretCode = json['secretCode'];
+        gameStatus = _calcStatusFromInt(json['gameStatus']),
+        secretCode = (json['secretCode'] as List<dynamic>?)
+            ?.map((e) => e as int)
+            .toList();
   EvaluateGuessResponse.failed()
       : correctSpots = 0,
         incorrectSpots = 0,
@@ -33,6 +35,13 @@ class EvaluateGuessResponse {
         secretCode = const [];
   bool gameIsFinished() {
     return gameStatus == GameStatus.won || gameStatus == GameStatus.lost;
+  }
+
+  static GameStatus _calcStatusFromInt(dynamic status) {
+    if (status == 0) return GameStatus.lost;
+    if (status == 1) return GameStatus.won;
+    if (status == 2) return GameStatus.playing;
+    return GameStatus.unknown;
   }
 }
 

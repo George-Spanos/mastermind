@@ -1,3 +1,4 @@
+import 'package:mastermind_ui/constants.dart';
 import 'package:mastermind_ui/game/models.dart';
 
 abstract class GameState {
@@ -18,14 +19,13 @@ class GamePlaying extends GameState {
       required this.totalGuesses,
       this.guesses = const []});
   GamePlaying addFeedbackToLastGuess(int correctSpots, int incorrectSpots) {
-    final newGuessIndex = guessIndex + 1;
     final newGuesses = [...guesses];
-    newGuesses[guessIndex] = newGuesses[guessIndex]
+    newGuesses[guessIndex - 1] = newGuesses[guessIndex - 1]
         .addFeedback(GuessFeedback(correctSpots, incorrectSpots));
 
     return GamePlaying(
         codeId: codeId,
-        guessIndex: newGuessIndex,
+        guessIndex: guessIndex + 1,
         totalGuesses: totalGuesses,
         guesses: newGuesses);
   }
@@ -50,7 +50,8 @@ class GameFinished extends GameState {
       message = "Congratulation you won!";
     }
     if (gameStatus == GameStatus.lost) {
-      message = "Sorry you lost. Correct code is $code";
+      final colorCode = code?.map((e) => pegColorNames[e]).toList();
+      message = "Sorry you lost. Correct code is $colorCode";
     }
   }
 }

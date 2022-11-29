@@ -20,10 +20,14 @@ class GameBloc extends Bloc<GameEvent, GameState> {
           totalGuesses: event.totalGuesses,
           guesses: List.generate(event.totalGuesses, (i) => Guess.empty())));
     } else if (event is GuessSubmitted) {
-      final response = await _api
-          .evaluateGuess(EvaluateGuessDto(event.guess.code, event.codeId));
+      assert(state is GamePlaying);
+      final playingState = state as GamePlaying;
+      final response = await _api.evaluateGuess(EvaluateGuessDto(
+          playingState.guesses[playingState.guessIndex - 1].code,
+          playingState.codeId));
       if (response.gameIsFinished()) {
-        emit(GameFinished(response.gameStatus, response.secretCode));
+        emit(GameFinished(
+            response.gameStatus, response.secretCode as List<int>));
       } else {
         assert(state is GamePlaying);
         final playingState = state as GamePlaying;

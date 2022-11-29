@@ -11,3 +11,15 @@ Map<int, Color> pegColors = {
   7: Colors.pink,
   8: Colors.purple,
 };
+Map<int, String> pegColorNames = {
+  1: "red",
+  2: "blue",
+  3: "green",
+  4: "yellow",
+  5: "grey",
+  6: "orange",
+  7: "pink",
+  8: "purple",
+};
+
+const totalGuesses = 10;

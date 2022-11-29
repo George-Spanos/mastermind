@@ -6,6 +6,7 @@ import 'package:mastermind_ui/game/game/bloc/game_bloc.dart';
 import 'package:mastermind_ui/game/game/bloc/game_event.dart';
 import 'package:mastermind_ui/game/game/bloc/game_state.dart';
 
+import '../../constants.dart';
 import '../models.dart';
 
 class Game extends StatefulWidget {
@@ -47,11 +48,10 @@ class _GameState extends State<Game> {
   _startPlaying() {
     final bloc = context.read<GameBloc>();
     final state = bloc.state;
-    if (state is GameNotPlaying) {
-      bloc.add(const GameStarted(totalGuesses: 12));
+    if (state is GameNotPlaying || state is GameFinished) {
+      bloc.add(const GameStarted(totalGuesses: totalGuesses));
     } else if (state is GamePlaying) {
-      throw UnimplementedError();
-      // bloc.add(GuessSubmitted(guess: guess, codeId: codeId));
+      bloc.add(const GuessSubmitted());
     }
   }
 }

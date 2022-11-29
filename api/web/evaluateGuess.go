@@ -8,6 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type EvaluateGuessDto struct {
+	GameUuid string  `json:"uuid"`
+	Guess    []uint8 `json:"guess"`
+}
+
 func evaluateGuess(ctx *gin.Context) {
 	var dto EvaluateGuessDto
 	err := ctx.BindJSON(&dto)
@@ -27,18 +32,22 @@ func evaluateGuess(ctx *gin.Context) {
 	fmt.Println(game)
 	if core.GameIsFinished(gameStatus) {
 		delete(activeGames, dto.GameUuid)
+		secretCode := make([]int, 4)
+		for i, n := range game.Code {
+			secretCode[i] = int(n)
+		}
+
 		ctx.JSON(http.StatusOK, gin.H{
 			"correctSpots":   correctSpots,
 			"incorrectSpots": incorrectSpots,
 			"gameStatus":     gameStatus,
-			"secretCode":     game.Code,
+			"secretCode":     secretCode,
 		})
 	} else {
-
+		ctx.JSON(http.StatusOK, gin.H{
+			"correctSpots":   correctSpots,
+			"incorrectSpots": incorrectSpots,
+			"gameStatus":     gameStatus,
+		})
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"correctSpots":   correctSpots,
-		"incorrectSpots": incorrectSpots,
-		"gameStatus":     gameStatus,
-	})
 }

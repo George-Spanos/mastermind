@@ -47,6 +47,9 @@ class CodeGuessList extends StatelessWidget {
                   ),
               itemCount: state.totalGuesses);
         }
+        if (state is GameFinished) {
+          return Text(state.message);
+        }
         return const Text("Unknown state");
       },
     );

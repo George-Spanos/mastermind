@@ -26,9 +26,7 @@ class GuessChanged extends GameEvent {
 }
 
 class GuessSubmitted extends GameEvent {
-  final Guess guess;
-  final String codeId;
-  const GuessSubmitted({required this.guess, required this.codeId});
+  const GuessSubmitted();
   @override
-  List<Object> get props => [guess, codeId];
+  List<Object> get props => [];
 }

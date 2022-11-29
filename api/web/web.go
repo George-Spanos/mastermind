@@ -6,16 +6,10 @@ import (
 	"github.com/google/uuid"
 )
 
-const guessLimit uint8 = 8
-
 type Game struct {
 	Uuid       uuid.UUID
 	Code       []uint8
 	guessIndex uint8
-}
-type EvaluateGuessDto struct {
-	GameUuid string  `json:"uuid"`
-	Guess    []uint8 `json:"guess"`
 }
 
 var activeGames = map[string]*Game{}

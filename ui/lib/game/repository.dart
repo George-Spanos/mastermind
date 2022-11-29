@@ -14,7 +14,15 @@ class ApiClient {
 
   Future<EvaluateGuessResponse> evaluateGuess(EvaluateGuessDto dto) async {
     final response = await http.post(Uri.parse('$_apiUrl/evaluateGuess'),
-        body: dto.toJson());
-    return EvaluateGuessResponse.success(json.decode(response.body));
+        body: json.encode(dto.toJson()));
+    if (response.statusCode == 200) {
+      return EvaluateGuessResponse.success(json.decode(response.body));
+    } else {
+      final bd = response.body;
+      print(bd);
+      throw Exception(
+        "Invalid http status $response.statusCode",
+      );
+    }
   }
 }
