@@ -18,8 +18,6 @@ class ApiClient {
     if (response.statusCode == 200) {
       return EvaluateGuessResponse.success(json.decode(response.body));
     } else {
-      final bd = response.body;
-      print(bd);
       throw Exception(
         "Invalid http status $response.statusCode",
       );

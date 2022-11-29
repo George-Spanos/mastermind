@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import '../../models.dart';
-
 abstract class GameEvent extends Equatable {
   const GameEvent();
 }
