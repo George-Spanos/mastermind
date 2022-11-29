@@ -6,17 +6,20 @@ class ColorList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      scrollDirection: Axis.horizontal,
-      separatorBuilder: (context, index) => const SizedBox(width: 5),
-      itemBuilder: (context, index) => Container(
-        width: 30,
-        height: 30,
-        decoration:
-            BoxDecoration(shape: BoxShape.circle, color: pegColors[index]),
+    return SizedBox(
+      height: 50,
+      child: ListView.separated(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (context, index) => const SizedBox(width: 5),
+        itemBuilder: (context, index) => Container(
+          width: 30,
+          height: 30,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle, color: pegColors[index + 1]),
+        ),
+        itemCount: pegColors.length - 1,
       ),
-      itemCount: pegColors.length,
     );
   }
 }

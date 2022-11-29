@@ -22,28 +22,18 @@ class _GameState extends State<Game> {
     return Center(
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const ColorList(),
-          const SizedBox(
-            width: 15,
-          ),
           SizedBox(
             width: 340,
             child: Column(children: [
-              const Flexible(child: CodeGuessList()),
-              const SizedBox(
-                height: 15,
-              ),
+              const Flexible(fit: FlexFit.tight, child: CodeGuessList()),
+              ColorList(),
               ElevatedButton(
                   onPressed: _startPlaying,
                   child: BlocBuilder<GameBloc, GameState>(
                       builder: (context, state) => state is GamePlaying
                           ? const Text("Submit Guess")
                           : const Text("Play"))),
-              const SizedBox(
-                height: 15,
-              )
             ]),
           ),
         ],
