@@ -36,7 +36,6 @@ func evaluateGuess(ctx *gin.Context) {
 		for i, n := range game.Code {
 			secretCode[i] = int(n)
 		}
-
 		ctx.JSON(http.StatusOK, gin.H{
 			"correctSpots":   correctSpots,
 			"incorrectSpots": incorrectSpots,

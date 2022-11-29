@@ -30,8 +30,14 @@ func GenerateCode(colors []uint8, codeLength uint8) []uint8 {
 
 // Given a guess []uint8 and a code, it returns (correntSpots, incorrectSpots) as a pair of uints for the given guess.
 func EvaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
+	// safely copy values to not mess underlying arrays
+	return evaluateGuess(append(make([]uint8, 0), guess...), append(make([]uint8, 0), code...))
+}
+
+func evaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
 	var correctSpots uint8
 	var incorrectSpots uint8
+
 	index := 0
 	for index < len(code) {
 		if guess[index] == code[index] {

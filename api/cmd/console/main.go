@@ -41,7 +41,7 @@ func main() {
 			input = strings.TrimSpace(input)
 			guess, err = convertInputToGuess(input, codeLength)
 		}
-		correntSpots, incorrectSpots := core.EvaluateGuess(append(make([]uint8, 0), guess...), append(make([]uint8, 0), code...))
+		correntSpots, incorrectSpots := core.EvaluateGuess(guess, code)
 
 		guessIndex++
 		gameState = core.DetermineGameState(correntSpots, uint8(codeLength), uint8(guessLimit), uint8(guessIndex))
