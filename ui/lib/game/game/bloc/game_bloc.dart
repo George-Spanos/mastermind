@@ -7,17 +7,29 @@ import 'game_event.dart';
 
 class GameBloc extends Bloc<GameEvent, GameState> {
   final ApiClient _api;
-  GameBloc(this._api) : super(NotPlaying()) {
+  GameBloc(this._api) : super(GameNotPlaying()) {
     on<GameEvent>(_handleGameEvent);
   }
-  void _handleGameEvent(GameEvent event, Emitter<GameState> emit) async {
+  Future<void> _handleGameEvent(
+      GameEvent event, Emitter<GameState> emit) async {
     if (event is GameStarted) {
       final response = await _api.startGame();
-      emit(Playing(
+      emit(GamePlaying(
           codeId: response.gameId,
           guessIndex: 1,
           totalGuesses: event.totalGuesses,
           guesses: List.filled(event.totalGuesses, Guess.empty())));
+    } else if (event is GuessSubmitted) {
+      final response = await _api
+          .evaluateGuess(EvaluateGuessDto(event.guess.code, event.codeId));
+      if (response.gameIsFinished()) {
+        emit(GameFinished(response.gameStatus, response.secretCode));
+      } else {
+        assert(state is GamePlaying);
+        final playingState = state as GamePlaying;
+        emit(playingState.addGuess(
+            response.correctSpots, response.incorrectSpots));
+      }
     }
   }
 }

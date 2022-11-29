@@ -27,6 +27,14 @@ func evaluateGuess(ctx *gin.Context) {
 	fmt.Println(game)
 	if core.GameIsFinished(gameStatus) {
 		delete(activeGames, dto.GameUuid)
+		ctx.JSON(http.StatusOK, gin.H{
+			"correctSpots":   correctSpots,
+			"incorrectSpots": incorrectSpots,
+			"gameStatus":     gameStatus,
+			"secretCode":     game.Code,
+		})
+	} else {
+
 	}
 	ctx.JSON(http.StatusOK, gin.H{
 		"correctSpots":   correctSpots,

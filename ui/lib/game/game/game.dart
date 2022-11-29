@@ -31,7 +31,7 @@ class _GameState extends State<Game> {
           ElevatedButton(
               onPressed: _startPlaying,
               child: BlocBuilder<GameBloc, GameState>(
-                  builder: (context, state) => state is Playing
+                  builder: (context, state) => state is GamePlaying
                       ? const Text("Submit Guess")
                       : const Text("Play"))),
           const SizedBox(
@@ -43,6 +43,13 @@ class _GameState extends State<Game> {
   }
 
   _startPlaying() {
-    context.read<GameBloc>().add(const GameStarted(totalGuesses: 12));
+    final bloc = context.read<GameBloc>();
+    final state = bloc.state;
+    if (state is GameNotPlaying) {
+      bloc.add(const GameStarted(totalGuesses: 12));
+    } else if (state is GamePlaying) {
+      throw UnimplementedError();
+      // bloc.add(GuessSubmitted(guess: guess, codeId: codeId));
+    }
   }
 }

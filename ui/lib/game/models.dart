@@ -20,14 +20,20 @@ class EvaluateGuessResponse {
   final int correctSpots;
   final int incorrectSpots;
   final GameStatus gameStatus;
+  final List<int>? secretCode;
   EvaluateGuessResponse.success(Map<String, dynamic> json)
       : correctSpots = json['correctSpots'],
         incorrectSpots = json['incorrectSpots'],
-        gameStatus = json['gameStatus'];
+        gameStatus = json['gameStatus'],
+        secretCode = json['secretCode'];
   EvaluateGuessResponse.failed()
       : correctSpots = 0,
         incorrectSpots = 0,
-        gameStatus = GameStatus.lost;
+        gameStatus = GameStatus.lost,
+        secretCode = const [];
+  bool gameIsFinished() {
+    return gameStatus == GameStatus.won || gameStatus == GameStatus.lost;
+  }
 }
 
 class GuessFeedback extends Equatable {
@@ -48,6 +54,10 @@ class Guess extends Equatable {
   Guess.empty()
       : code = List.filled(4, 0),
         feedback = null;
+  Guess addFeedback(GuessFeedback feedback) {
+    return Guess(code, feedback);
+  }
+
   @override
   List<Object?> get props => [code, feedback];
 }
