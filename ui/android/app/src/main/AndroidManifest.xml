@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mastermind_ui">
+    package="com.moby.mastermind_ui">
    <application
-        android:label="mastermind_ui"
+        android:label="Mastermind"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
@@ -31,4 +31,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
