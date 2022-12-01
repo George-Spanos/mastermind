@@ -39,6 +39,10 @@ class GamePlaying extends GameState {
         totalGuesses: totalGuesses,
         guesses: newGuesses);
   }
+
+  bool lastGuessIsValid() {
+    return guesses[guessIndex - 1].code.every((element) => element != 0);
+  }
 }
 
 class GameFinished extends GameState {

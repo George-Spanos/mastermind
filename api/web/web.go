@@ -19,6 +19,7 @@ func registerRoutes() *gin.Engine {
 	router.Use(cors.Default())
 	router.POST("/startGame", startGame)
 	router.POST("/evaluateGuess", evaluateGuess)
+	router.StaticFile("/privacy", "privacy.html")
 	return router
 }
 func StartServer() error {
