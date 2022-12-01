@@ -9,13 +9,17 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 void main() async {
   await dotenv.load(fileName: getEnvFilename());
-  await SentryFlutter.init(
-    (options) {
-      options.dsn =
-          'https://0b64b5d9d6e94ad6bfa393e106df06bd@o4504247220502528.ingest.sentry.io/4504247221616640';
-    },
-    appRunner: () => runApp(AppInitializer(child: const MastermindApp())),
-  );
+  if (kDebugMode) {
+    runApp(AppInitializer(child: const MastermindApp()));
+  } else {
+    await SentryFlutter.init(
+      (options) {
+        options.dsn =
+            'https://0b64b5d9d6e94ad6bfa393e106df06bd@o4504247220502528.ingest.sentry.io/4504247221616640';
+      },
+      appRunner: () => runApp(AppInitializer(child: const MastermindApp())),
+    );
+  }
 }
 
 class MastermindApp extends StatelessWidget {
