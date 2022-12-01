@@ -33,5 +33,6 @@ class PlayButton extends StatelessWidget {
 
   bool _playEnabled(GameState state) =>
       state is GameNotPlaying ||
+      state is GameFinished ||
       state is GamePlaying && state.lastGuessIsValid();
 }
