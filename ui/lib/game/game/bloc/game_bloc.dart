@@ -22,6 +22,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     } else if (event is GuessSubmitted) {
       assert(state is GamePlaying);
       final playingState = state as GamePlaying;
+      emit(playingState.setLoading(true));
       final response = await _api.evaluateGuess(EvaluateGuessDto(
           playingState.guesses[playingState.guessIndex - 1].code,
           playingState.codeId));

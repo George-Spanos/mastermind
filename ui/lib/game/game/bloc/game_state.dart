@@ -9,6 +9,7 @@ abstract class GameState {
 class GameNotPlaying extends GameState {}
 
 class GamePlaying extends GameState {
+  final bool loadingFeedback;
   final String codeId;
   final int guessIndex;
   final int totalGuesses;
@@ -17,6 +18,7 @@ class GamePlaying extends GameState {
       {required this.codeId,
       required this.guessIndex,
       required this.totalGuesses,
+      this.loadingFeedback = false,
       this.guesses = const []});
   GamePlaying addFeedbackToLastGuess(int correctSpots, int incorrectSpots) {
     final newGuesses = [...guesses];
@@ -27,7 +29,8 @@ class GamePlaying extends GameState {
         codeId: codeId,
         guessIndex: guessIndex + 1,
         totalGuesses: totalGuesses,
-        guesses: newGuesses);
+        guesses: newGuesses,
+        loadingFeedback: false);
   }
 
   GamePlaying changeGuess(int color, int guessIndex, int pegIndex) {
@@ -38,6 +41,15 @@ class GamePlaying extends GameState {
         guessIndex: this.guessIndex,
         totalGuesses: totalGuesses,
         guesses: newGuesses);
+  }
+
+  GamePlaying setLoading(bool loading) {
+    return GamePlaying(
+        codeId: codeId,
+        guessIndex: guessIndex,
+        totalGuesses: totalGuesses,
+        guesses: guesses,
+        loadingFeedback: loading);
   }
 
   bool lastGuessIsValid() {
