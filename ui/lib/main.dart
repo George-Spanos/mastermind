@@ -6,9 +6,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mastermind_ui/app_initializer.dart';
 import 'package:mastermind_ui/game/game/game.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   await dotenv.load(fileName: getEnvFilename());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   if (kDebugMode) {
     runApp(AppInitializer(child: const MastermindApp()));
   } else {
