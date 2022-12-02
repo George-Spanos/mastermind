@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "257885894654-mik7aukdef16dj9gj39d1nv4mnbfvbkh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moby.mastermind_ui",
+            "certificate_hash": "40614c4223bca4d00e4ee38325e6abf3434b72e4"
+          }
+        },
+        {
           "client_id": "257885894654-u4hmoqqf8dtiq9no7ebpq99cif96jpap.apps.googleusercontent.com",
           "client_type": 3
         }

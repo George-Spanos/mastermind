@@ -1,30 +1,22 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mastermind_ui/app_initializer.dart';
 import 'package:mastermind_ui/game/game/game.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   await dotenv.load(fileName: getEnvFilename());
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  if (kDebugMode) {
-    runApp(AppInitializer(child: const MastermindApp()));
-  } else {
-    await SentryFlutter.init(
-      (options) {
-        options.dsn =
-            'https://0b64b5d9d6e94ad6bfa393e106df06bd@o4504247220502528.ingest.sentry.io/4504247221616640';
-      },
-      appRunner: () => runApp(AppInitializer(child: const MastermindApp())),
-    );
-  }
+  await Firebase.initializeApp();
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+  runApp(AppInitializer(child: const MastermindApp()));
 }
 
 class MastermindApp extends StatelessWidget {

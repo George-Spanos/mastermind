@@ -40,7 +40,7 @@
         "request": "launch",
         "program": "ui/lib/main.dart",
         "flutterMode": "debug",
-        "deviceId": "emulator-5554"
+        "deviceId": "rkwgu4byvc4hbaqk"
       }
     ]
   }
