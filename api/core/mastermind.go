@@ -33,7 +33,10 @@ func EvaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
 	// safely copy values to not mess underlying arrays
 	return evaluateGuess(append(make([]uint8, 0), guess...), append(make([]uint8, 0), code...))
 }
-
+func EvaluateGuessInt(guess []int, code []int) (int, int) {
+	// safely copy values to not mess underlying arrays
+	return evaluateGuessInt(append(make([]int, 0), guess...), append(make([]int, 0), code...))
+}
 func evaluateGuess(guess []uint8, code []uint8) (uint8, uint8) {
 	var correctSpots uint8
 	var incorrectSpots uint8
@@ -76,4 +79,46 @@ func DetermineGameState(correntSpots uint8, codeLength uint8, guessLimit uint8, 
 // returns true if gameStatus == 1 or gameStatus == 0
 func GameIsFinished(gameStatus uint8) bool {
 	return gameStatus == 0 || gameStatus == 1
+}
+
+// Int methods are present only for benchmarking purposes
+
+func CreateColorsInt(length int) []int {
+	s := make([]int, length)
+	for i := range s {
+		s[i] = int(i)
+	}
+	return s
+}
+func GenerateCodeInt(colors []int, codeLength int) []int {
+	code := make([]int, codeLength)
+	rand.Seed(time.Now().Unix())
+	for i := range code {
+		randomIndex := rand.Intn(len(colors))
+		code[i] = colors[randomIndex]
+	}
+	return code
+}
+func evaluateGuessInt(guess []int, code []int) (int, int) {
+	var correctSpots int
+	var incorrectSpots int
+
+	index := 0
+	for index < len(code) {
+		if guess[index] == code[index] {
+			correctSpots++
+			guess = append(guess[:index], guess[index+1:]...)
+			code = append(code[:index], code[index+1:]...)
+		} else {
+			index++
+		}
+	}
+	for len(code) > 0 {
+		if i, isInArray := tools.SliceContains(guess, code[0]); isInArray {
+			incorrectSpots++
+			guess = append(guess[:i], guess[i+1:]...)
+		}
+		code = code[1:]
+	}
+	return correctSpots, incorrectSpots
 }
