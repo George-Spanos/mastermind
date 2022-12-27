@@ -1,4 +1,6 @@
-.PHONY: clean
+.PHONY: clean build
 
 clean:
-	rm -rf build
+	rm -rf build	
+build:
+	./build.sh
