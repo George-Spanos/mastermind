@@ -5,7 +5,7 @@ all: clean test build_web
 clean:
 	rm -rf build/
 test:
-	go test ./...
+	go test ./... -v -cover
 
 bench:
 	go test ./... -bench=. -benchmem
