@@ -18,11 +18,20 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "Api",
+        "name": "Web api",
         "type": "go",
         "request": "launch",
         "mode": "debug",
         "program": "${fileDirname}/api/cmd/web",
+        "showLog": true,
+        "console": "integratedTerminal"
+      },
+      {
+        "name": "Console",
+        "type": "go",
+        "request": "launch",
+        "mode": "debug",
+        "program": "${fileDirname}/api/cmd/console",
         "showLog": true,
         "console": "integratedTerminal"
       },
